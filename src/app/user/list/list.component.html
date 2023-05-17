@@ -1,0 +1,29 @@
+<h1>Users List</h1>
+<div class="overflow-x-auto w-full">
+  <table class="table w-full">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Avatar</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersObs$ | async">
+        <th>{{user.id}}</th>
+        <th>{{user.first_name}} {{user.last_name}}</th>
+        <th>{{user.email}}</th>
+        <th>
+          <div class="avatar">
+            <div class="mask mask-squircle w-12 h-12">
+              <img [src]="user.avatar" alt="user avatar" width="15" height="15"/>
+            </div>
+          </div>
+        </th>
+        <th></th>
+      </tr>
+    </tbody>
+  </table>
+</div>
