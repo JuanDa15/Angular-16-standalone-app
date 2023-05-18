@@ -16,6 +16,6 @@ export class ListComponent implements OnInit{
   public usersObs$ = this.usersService.usersObs$;
 
   ngOnInit(): void {
-    this.usersService.getUsers()
+    // this.usersService.getUsers()
   }
 }
