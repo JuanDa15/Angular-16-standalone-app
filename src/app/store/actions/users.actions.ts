@@ -2,11 +2,15 @@ import { createAction, props } from "@ngrx/store";
 import { User } from "src/app/models/user.interface";
 
 export const loadUsers = createAction(
-  '[USERS] SET USERS',
+  '[USERS] LOAD USERS',
+)
+
+export const loadUsersSuccess = createAction(
+  '[USERS] LOAD USERS SUCESS',
   props<{ users: User[] }>()
 )
 
-export const errorUsers = createAction(
+export const loadUsersError = createAction(
   '[USERS] ERROR USERS',
   props<{ payload: any }>()
 )
