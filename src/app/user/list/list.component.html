@@ -1,5 +1,5 @@
-<h1>Users List</h1>
-<div class="overflow-x-auto w-full">
+<div class="overflow-x-auto w-full" *ngIf="(error$ | async) === null">
+  <h1>Users List</h1>
   <table class="table w-full">
     <thead>
       <tr>
@@ -22,8 +22,30 @@
             </div>
           </div>
         </th>
-        <th></th>
+        <th>
+          <a routerLink="/user/{{user.id}}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+            </svg>
+          </a>
+        </th>
       </tr>
     </tbody>
   </table>
 </div>
+
+<app-loader *ngIf="loading$ | async"></app-loader>
+
+<ng-container *ngIf="(error$ | async) as data">
+  <div *ngIf="data !== null" >
+    <p class="bg-red-400 rounded-md p-2 mt-4 text-red-900 text-center">
+      <span class="block">{{data.status}} - {{data.message}}</span>
+      <span class="font-semibold">{{data.url}}</span>
+    </p>
+    <pre class="mt-2 border-[1px] p-2 rounded-md">
+      <h2 class="font-semibold">Error: </h2>
+      {{data.error | json}}
+    </pre>
+  </div>
+
+</ng-container>

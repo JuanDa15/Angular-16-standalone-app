@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { createAction, props } from "@ngrx/store";
 import { User } from "src/app/models/user.interface";
 
@@ -12,5 +13,5 @@ export const loadUsersSuccess = createAction(
 
 export const loadUsersError = createAction(
   '[USERS] ERROR USERS',
-  props<{ payload: any }>()
+  props<{ payload: Partial<HttpErrorResponse> }>()
 )

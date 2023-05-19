@@ -1,12 +1,13 @@
 import { createReducer, on } from "@ngrx/store";
 import { User } from "src/app/models/user.interface";
 import { loadUsers, loadUsersError, loadUsersSuccess } from "../actions";
+import { HttpErrorResponse } from "@angular/common/http";
 
 export interface UsersState {
   users: User[],
   loaded: boolean,
   loading: boolean,
-  error: any
+  error: Partial<HttpErrorResponse> | null
 }
 
 const initialState: UsersState = {
@@ -25,16 +26,16 @@ export const usersReducer = createReducer(
       ...state,
       users: newUsers,
       loading: false,
-      loaded: true
+      loaded: true,
+      error: null
     }
   }),
   on(loadUsersError, (state, {payload}) => {
-    const payloadCopy = structuredClone(payload);
     return {
       ...state,
       loaded: false,
       loading: false,
-      error: payloadCopy
+      error: payload
     }
   })
 )

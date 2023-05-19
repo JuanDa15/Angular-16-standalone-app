@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { userReducer } from './store/reducers';
+import { provideState } from '@ngrx/store';
 
 export const routes: Routes = [
   {
@@ -16,6 +18,9 @@ export const routes: Routes = [
       },
       {
         path: ':id',
+        providers: [
+          provideState('user', userReducer)
+        ],
         loadComponent: () => import('src/app/user/user/user.component')
           .then(c => c.UserComponent)
       }
